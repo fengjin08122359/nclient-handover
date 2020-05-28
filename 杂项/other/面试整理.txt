@@ -1,0 +1,147 @@
+简述html5css3
+1.html5新增了 section等 新定义的标签,websql,canvas,websocket,audio,video,localstorage,sessionstroage
+2.css3新增了 border-radis,动画,阴影, 输入框属性 placeholder require autocomplete 
+垂直居中的两种写法
+1.vertical-align:middle;
+2.position:absolute;top:50%;trasnform:translate(0,-50%);
+3.ele{vertical-align:middle;};ele:after{content:'',display:inline-block;width:0;height:100%;vertical-align:middle;}
+4.display:flex;justify-content:center;
+清除浮动的两种写法
+1.clear:both 清除浮动 
+2.:after{display:block;clear:both;content:'';height:0;visiblity:hidden;}
+盒模型，有几种分别是什么
+1.标准盒模型box-sizing:content-box;
+2.怪异盒模型->width会将padding,border计算在内box-sizing:border-box;
+浅拷贝深拷贝有什么不同
+{
+修改的内存是否相同
+真实的拷贝一个对象而不是指针
+array
+}
+写个浅拷贝
+var arr = arr1;
+写个深拷贝
+var arr = arr1.slice(); 
+var arr = arr1.concat();
+[...arr]
+怎么判断一个对象是数组
+arr.constructor == Array
+obj.constructor == Object
+写两个数组去重
+Array.from(new Set([...arr]));
+var obj = {}
+for(var i in p){
+  if (!obj[i]){
+    obj[i] = 1;
+    result.push(p[i]);
+  }
+}
+写两个降序数组的方法
+归并排序
+快速排序
+sort();
+foreach和for有什么不同
+1.map 原值不变,返回一个新数组
+2.无法终止foreach
+3.for可以中断
+4.foreach存在回调
+5.循环嵌套
+Js的类型，基础类型
+String.null.undefined,Number,Boolean,Object
+引用->function,array,
+闭包,匿名函数
+闭包指有权访问另一个函数作用域里变量的函数
+闭包指向window
+var a = function(){}//匿名
+事件绑定，新增对象的持续绑定
+document.getElementByTagName('').addEventListen({})
+document.getElementByTagName('').addEventListen({},true) //判断当前节点是否是目标节点或他的子节点
+
+Es6的你用到的方法
+array ,text ,function
+let const, array spread, template string, class, arrow function, rest, module
+
+原型链
+__proto__ {},Function
+prototype Function
+var a = {}
+//var b = function(){};
+function b (){}
+b.prototype = {
+  e:0,
+  f:function(){}
+}
+var c = new b();  
+c.constructor == b
+b.constructor == Function
+c.f()
+
+React生命周期
+create->mounted->updated->destroy
+Vue keepalive 相关的方法
+保留监听 activated deactivated
+Vuex原理使用原因
+没有tempalte的隐藏的vue组件 -> 本质上是绑定了一个隐藏的data,通过绑定computed和隐藏data的watcher,达到更新利用了compute更新
+
+Vuerouter生命周期
+1.根据router绑定$router,$route
+2.解析网址
+->
+
+
+async和defer
+async会继续加载dom直到js可以解析,解析js后继续加载dom,不能确定顺序
+defer会继续加载dom,直到dom加载完后,解析js,可以确定顺序
+dom节点加载
+二进制->string->xml->dom
+遇到js或css -> 执行文件until执行结束(执行js或渲染css) ->继续加载dom
+使用media
+ 
+作用域闭包
+1.拥有这个概念可以指代闭包
+2.我有...可以指代作用域
+
+cookie localstorage sessionstroage
+1.cookie 大小4k,会跟随发送->数据量增大,拦截时存在安全隐患
+2.localstorage 大小20M,存储在本地,不会跟随发送,不会再关闭对话框后删除
+3.sessionstorage 大小20M,存储在本地,不会跟随发送,会再关闭对话框后删除
+
+
+简述跨域获取的方法 
+jsonp postMessage cookie 反向代理
+
+什么情况下需要使用content:''
+React 不同对象的创建及原因
+面试使用的项目为什么要采用
+
+
+前端工程化
+
+前端安全性
+xss->上传script脚本相关的代码,通过其他页面的访问获取登录等信息
+csrf->增加token通过受到信任的网站访问危险网站->盗取cookie访问
+sql->通过sql语句查询访问拼接字符串->使用hql
+上传漏洞->上传木马文件->后缀名限制
+
+vue 开发组件与插件
+
+
+
+键盘唤醒分为两种
+1. scroll滑动
+2. resize高度变化
+
+ios基本使用scroll滑动
+由于第三方键盘是先等系统键盘加载了然后覆盖的，所以高度会有二次变化
+但是这个变化不会引发第二次scroll滑动
+一般的解决方案是在底部增加一个40px高度的白条作为填充
+
+但目前无法使用该方案
+
+目前在app中初始化阶段就进行了一次高度变化,这个变化会在初始化阶段就认为唤醒了输入框,造成底部白条
+
+解决方案:
+在ios端仅监听scroll滑动(需要确定app(ios)的键盘机制)
+并在底部增加一个40px高度的白条作为填充
+
+
